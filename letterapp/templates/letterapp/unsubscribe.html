@@ -1,0 +1,43 @@
+<style>
+    .error_message {
+        color: rgb(3, 116, 3);
+        background-color: #dbffdb;
+        width: 300px;
+        padding: 5px;
+        border-radius: 4px
+    }
+
+    .alert {
+        padding: 0 !important;
+        padding: 5px !important;
+        width: 300px;
+    }
+</style>
+
+{% extends "letterapp/base.html" %}
+
+{% block content %}
+
+<center>
+    <h1>Hello, World</h1>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <!-- <p class="error_message">{{ message }}</p> -->
+                    <div class="alert alert-{{message.tags}} border border-{{message.tags}}" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <label class="mb-2" for="id_email">Enter your email to Unsubscribe</label><br>
+            {{ form }}
+            <button type="submit">Unsubscribe</button>
+        </form>
+    </div>
+</center>
+
+
+
+{% endblock %}
